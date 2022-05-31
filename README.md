@@ -105,37 +105,42 @@ Please run this yourself to check for any updates on how to cite
 ``` r
 print(citation('iSEEhex'), bibtex = TRUE)
 #> 
-#> kevinrue (2022). _Demonstration of a Bioconductor Package_. doi:
-#> 10.18129/B9.bioc.MyBioconductorPackage (URL:
-#> https://doi.org/10.18129/B9.bioc.MyBioconductorPackage),
-#> https://github.com/kevinrue/MyBioconductorPackage/MyBioconductorPackage
-#> - R package version 0.99.0, <URL:
-#> http://www.bioconductor.org/packages/MyBioconductorPackage>.
+#> Rue-Albrecht K, Soneson C, Marini F, Lun A (2022). _iSEEhex_. doi:
+#> 10.18129/B9.bioc.iSEEhex (URL:
+#> https://doi.org/10.18129/B9.bioc.iSEEhex),
+#> https://github.com/kevinrue/MyBioconductorPackage/iSEEhex - R package
+#> version 0.99.0, <URL: http://www.bioconductor.org/packages/iSEEhex>.
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
 #>   @Manual{,
-#>     title = {Demonstration of a Bioconductor Package},
-#>     author = {{kevinrue}},
+#>     title = {iSEEhex},
+#>     author = {Kevin Rue-Albrecht and Charlotte Soneson and Federico Marini and Aaron Lun},
 #>     year = {2022},
-#>     url = {http://www.bioconductor.org/packages/MyBioconductorPackage},
-#>     note = {https://github.com/kevinrue/MyBioconductorPackage/MyBioconductorPackage - R package version 0.99.0},
-#>     doi = {10.18129/B9.bioc.MyBioconductorPackage},
+#>     url = {http://www.bioconductor.org/packages/iSEEhex},
+#>     note = {https://github.com/kevinrue/MyBioconductorPackage/iSEEhex - R package version 0.99.0},
+#>     doi = {10.18129/B9.bioc.iSEEhex},
 #>   }
 #> 
-#> kevinrue (2022). "Demonstration of a Bioconductor Package." _bioRxiv_.
-#> doi: 10.1101/TODO (URL: https://doi.org/10.1101/TODO), <URL:
-#> https://www.biorxiv.org/content/10.1101/TODO>.
+#> Rue-Albrecht K, Soneson C, Marini F, Lun A (2018). "iSEE: Interactive
+#> SummarizedExperiment Explorer." _F1000Research_, *7*, 741. doi:
+#> 10.12688/f1000research.14966.1 (URL:
+#> https://doi.org/10.12688/f1000research.14966.1), <URL:
+#> https://f1000research.com/articles/7-741>.
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
 #>   @Article{,
-#>     title = {Demonstration of a Bioconductor Package},
-#>     author = {{kevinrue}},
-#>     year = {2022},
-#>     journal = {bioRxiv},
-#>     doi = {10.1101/TODO},
-#>     url = {https://www.biorxiv.org/content/10.1101/TODO},
+#>     title = {iSEE: Interactive SummarizedExperiment Explorer},
+#>     author = {Kevin Rue-Albrecht and Charlotte Soneson and Federico Marini and Aaron Lun},
+#>     publisher = {F1000 Research, Ltd.},
+#>     journal = {F1000Research},
+#>     year = {2018},
+#>     month = {Jun},
+#>     volume = {7},
+#>     pages = {741},
+#>     doi = {10.12688/f1000research.14966.1},
+#>     url = {https://f1000research.com/articles/7-741},
 #>   }
 ```
 
