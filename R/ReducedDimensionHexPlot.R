@@ -104,6 +104,7 @@ collated[.plotBinResolution] <- "numeric"
 
 #' @export
 #' @importClassesFrom iSEE ReducedDimensionPlot
+#' @import SummarizedExperiment
 setClass("ReducedDimensionHexPlot", contains="ReducedDimensionPlot", slots=collated)
 
 #' @export
