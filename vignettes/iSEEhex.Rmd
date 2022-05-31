@@ -53,6 +53,41 @@ library(iSEEhex)
 
 All the panels described in this document can be deployed by simply passing them into the `iSEE()` function via the `initial=` argument, as shown in the following examples.
 
+## Example
+
+Let us prepare an example `r BiocStyle::Biocpkg("SingleCellExperiment")` object.
+
+```{r}
+library(scRNAseq)
+
+# Example data ----
+sce <- ReprocessedAllenData(assays="tophat_counts")
+class(sce)
+
+library(scater)
+sce <- logNormCounts(sce, exprs_values="tophat_counts")
+
+sce <- runPCA(sce, ncomponents=4)
+sce <- runTSNE(sce)
+rowData(sce)$ave_count <- rowMeans(assay(sce, "tophat_counts"))
+rowData(sce)$n_cells <- rowSums(assay(sce, "tophat_counts") > 0)
+```
+
+```{r}
+library(iSEE)
+initialPanels <- list(
+    ReducedDimensionPlot(
+        ColorBy = "Feature name", ColorByFeatureName = "Cux2", PanelWidth = 6L),
+    ReducedDimensionHexPlot(
+        ColorBy = "Feature name", ColorByFeatureName = "Cux2", PanelWidth = 6L,
+        BinResolution = 30)
+)
+app <- iSEE(se = sce, initial = initialPanels)
+```
+
+
+## Further reading
+
 #### Where can I find a comprehensive introduction to `r Biocpkg("iSEE")`? {-}
 
 The `r Biocpkg("iSEE")` package contains several vignettes detailing the main functionality. 
