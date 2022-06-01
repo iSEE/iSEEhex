@@ -31,7 +31,11 @@ bibliography: iSEEhex.bib
 ---
 
 ```{r, echo=FALSE}
-knitr::opts_chunk$set(error=FALSE, warning=FALSE, message=FALSE)
+knitr::opts_chunk$set(
+    error=FALSE,
+    warning=FALSE,
+    message=FALSE,
+    out.width='100%')
 library(BiocStyle)
 ```
 
