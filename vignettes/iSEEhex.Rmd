@@ -43,8 +43,8 @@ SCREENSHOT <- function(x, ...) knitr::include_graphics(x)
 
 The `r Biocpkg("iSEE")` package [@iSEE-2018] provides a general and flexible framework for interactively exploring `SummarizedExperiment` objects.
 However, in many cases, more specialized panels are required for effective visualization of specific data types.
-The `r Biocpkg("iSEEhex")` package implements a collection of such dedicated panel classes that work directly in the `iSEE` application and can smoothly interact with other panels.
-This allows users to quickly parametrize bespoke apps for their data to address scientific questions of interest.
+The `r Biocpkg("iSEEhex")` package implements panels summarising data points in hexagonal bins, that work directly in the `iSEE` application and can smoothly interact with other panels.
+
 We first load in the package:
 
 ```{r}
@@ -80,7 +80,6 @@ standard `ReducedDimensionPlot` defined in the `r BiocStyle::Biocpkg("iSEE")`
 package.
 
 ```{r}
-library(iSEEhex)
 initialPanels <- list(
     ReducedDimensionPlot(
         ColorBy = "Feature name", ColorByFeatureName = "Cux2", PanelWidth = 6L),
