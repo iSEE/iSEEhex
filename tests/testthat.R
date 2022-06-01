@@ -1,4 +1,4 @@
 library(testthat)
-library(MyBioconductorPackage)
+library(iSEEhex)
 
-test_check("MyBioconductorPackage")
+test_check("iSEEhex")

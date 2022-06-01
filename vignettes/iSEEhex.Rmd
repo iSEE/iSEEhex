@@ -1,0 +1,111 @@
+---
+title: The iSEEhex package
+author:
+- name: Kevin Rue-Albrecht
+  affiliation: 
+  - &id1 MRC Weatherall Institute of Molecular Medicine, University of Oxford,
+    Headington, Oxford OX3 9DS, UK.
+  email: kevin.rue-albrecht@imm.ox.ac.uk
+- name: Federico Marini
+  affiliation: 
+  - &id2 Institute of Medical Biostatistics, Epidemiology and Informatics (IMBEI), Mainz
+  - Center for Thrombosis and Hemostasis (CTH), Mainz
+  email: marinif@uni-mainz.de
+- name: Charlotte Soneson
+  affiliation: 
+  - &id3 Friedrich Miescher Institute for Biomedical Research, Basel
+  - SIB Swiss Institute of Bioinformatics
+  email: charlottesoneson@gmail.com
+- name: Aaron Lun
+  email: infinite.monkeys.with.keyboards@gmail.com  
+date: "`r BiocStyle::doc_date()`"
+package: iSEEhex
+output: BiocStyle::html_document
+vignette: >
+  %\VignetteIndexEntry{Panel universe}
+  %\VignetteEncoding{UTF-8}  
+  %\VignettePackage{iSEEhex}
+  %\VignetteKeywords{GeneExpression, RNASeq, Sequencing, Visualization, QualityControl, GUI}
+  %\VignetteEngine{knitr::rmarkdown}
+bibliography: iSEEhex.bib  
+---
+
+```{r, echo=FALSE}
+knitr::opts_chunk$set(error=FALSE, warning=FALSE, message=FALSE)
+library(BiocStyle)
+```
+
+```{r, eval=!exists("SCREENSHOT"), include=FALSE}
+SCREENSHOT <- function(x, ...) knitr::include_graphics(x)
+```
+
+# Overview
+
+The `r Biocpkg("iSEE")` package [@iSEE-2018] provides a general and flexible framework for interactively exploring `SummarizedExperiment` objects.
+However, in many cases, more specialized panels are required for effective visualization of specific data types.
+The `r Biocpkg("iSEEhex")` package implements panels summarising data points in hexagonal bins, that work directly in the `iSEE` application and can smoothly interact with other panels.
+
+We first load in the package:
+
+```{r}
+library(iSEEhex)
+```
+
+All the panels described in this document can be deployed by simply passing them into the `iSEE()` function via the `initial=` argument, as shown in the following examples.
+
+## Example
+
+Let us prepare an example `r BiocStyle::Biocpkg("SingleCellExperiment")` object.
+
+```{r}
+library(scRNAseq)
+
+# Example data ----
+sce <- ReprocessedAllenData(assays="tophat_counts")
+class(sce)
+
+library(scater)
+sce <- logNormCounts(sce, exprs_values="tophat_counts")
+
+sce <- runPCA(sce, ncomponents=4)
+sce <- runTSNE(sce)
+rowData(sce)$ave_count <- rowMeans(assay(sce, "tophat_counts"))
+rowData(sce)$n_cells <- rowSums(assay(sce, "tophat_counts") > 0)
+sce
+```
+
+Then, we create an `r BiocStyle::Biocpkg("iSEE")` app that compares the
+`ReducedDimensionHexPlot` panel -- defined in this package -- to the
+standard `ReducedDimensionPlot` defined in the `r BiocStyle::Biocpkg("iSEE")`
+package.
+
+```{r}
+initialPanels <- list(
+    ReducedDimensionPlot(
+        ColorBy = "Feature name", ColorByFeatureName = "Cux2", PanelWidth = 6L),
+    ReducedDimensionHexPlot(
+        ColorBy = "Feature name", ColorByFeatureName = "Cux2", PanelWidth = 6L,
+        BinResolution = 30)
+)
+app <- iSEE(se = sce, initial = initialPanels)
+```
+
+```{r, echo=FALSE}
+SCREENSHOT("screenshots/reduced-dimension-hex-plot.png")
+```
+
+## Further reading
+
+#### Where can I find a comprehensive introduction to `r Biocpkg("iSEE")`? {-}
+
+The `r Biocpkg("iSEE")` package contains several vignettes detailing the main functionality. 
+You can also take a look at this [workshop](https://iSEE.github.io/iSEEWorkshop2019/index.html). 
+A compiled version from the Bioc2019 conference (based on Bioconductor release 3.10) is available [here](http://biocworkshops2019.bioconductor.org.s3-website-us-east-1.amazonaws.com/page/iSEEWorkshop2019__iSEE-lab/).
+
+# Session information {-}
+
+```{r}
+sessionInfo()
+```
+
+# References {-}

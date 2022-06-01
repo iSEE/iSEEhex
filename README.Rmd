@@ -13,81 +13,95 @@ knitr::opts_chunk$set(
 )
 ```
 
-# MyBioconductorPackage
+# iSEEhex
 
 <!-- badges: start -->
-[![GitHub issues](https://img.shields.io/github/issues/kevinrue/MyBioconductorPackage)](https://github.com/kevinrue/MyBioconductorPackage/issues)
-[![GitHub pulls](https://img.shields.io/github/issues-pr/kevinrue/MyBioconductorPackage)](https://github.com/kevinrue/MyBioconductorPackage/pulls)
+[![GitHub issues](https://img.shields.io/github/issues/iSEE/iSEEhex)](https://github.com/iSEE/iSEEhex/issues)
+[![GitHub pulls](https://img.shields.io/github/issues-pr/iSEE/iSEEhex)](https://github.com/iSEE/iSEEhex/pulls)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![R-CMD-check-bioc](https://github.com/kevinrue/MyBioconductorPackage/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/kevinrue/MyBioconductorPackage/actions)
-[![Codecov test coverage](https://codecov.io/gh/kevinrue/MyBioconductorPackage/branch/main/graph/badge.svg)](https://app.codecov.io/gh/kevinrue/MyBioconductorPackage?branch=main)
+[![R-CMD-check-bioc](https://github.com/iSEE/iSEEhex/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/iSEE/iSEEhex/actions)
+[![Codecov test coverage](https://codecov.io/gh/iSEE/iSEEhex/branch/main/graph/badge.svg)](https://app.codecov.io/gh/iSEE/iSEEhex?branch=main)
 <!-- badges: end -->
 
-The goal of `MyBioconductorPackage` is to ...
+The goal of `iSEEhex` is to provide panels summarising data points in hexagonal
+bins for `r BiocStyle::Biocpkg("iSEE")`.
 
 ## Installation instructions
 
-Get the latest stable `R` release from [CRAN](http://cran.r-project.org/). Then install `MyBioconductorPackage` from [Bioconductor](http://bioconductor.org/) using the following code:
+Get the latest stable `R` release from [CRAN](http://cran.r-project.org/). Then install `iSEEhex` from [Bioconductor](http://bioconductor.org/) using the following code:
 
 ```{r 'install', eval = FALSE}
 if (!requireNamespace("BiocManager", quietly = TRUE)) {
     install.packages("BiocManager")
 }
 
-BiocManager::install("MyBioconductorPackage")
+BiocManager::install("iSEEhex")
 ```
 
-And the development version from [GitHub](https://github.com/kevinrue/MyBioconductorPackage) with:
+And the development version from [GitHub](https://github.com/iSEE/iSEEhex) with:
 
 ```{r 'install_dev', eval = FALSE}
-BiocManager::install("kevinrue/MyBioconductorPackage")
+BiocManager::install("iSEE/iSEEhex")
 ```
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+For demonstration, we prepare an example `r BiocStyle::Biocpkg("SingleCellExperiment")` object.
 
-```{r example, eval = requireNamespace('MyBioconductorPackage')}
-library("MyBioconductorPackage")
-## basic example code
+```{r example, eval = requireNamespace('iSEEhex'), message=FALSE}
+library(scRNAseq)
+
+# Example data ----
+sce <- ReprocessedAllenData(assays="tophat_counts")
+class(sce)
+
+library(scater)
+sce <- logNormCounts(sce, exprs_values="tophat_counts")
+
+sce <- runPCA(sce, ncomponents=4)
+sce <- runTSNE(sce)
+rowData(sce)$ave_count <- rowMeans(assay(sce, "tophat_counts"))
+rowData(sce)$n_cells <- rowSums(assay(sce, "tophat_counts") > 0)
+sce
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
+Then, we create an `r BiocStyle::Biocpkg("iSEE")` app that compares the
+`ReducedDimensionHexPlot` panel -- defined in this package -- to the
+standard `ReducedDimensionPlot` defined in the `r BiocStyle::Biocpkg("iSEE")`
+package.
 
-```{r cars}
-summary(cars)
+```{r}
+library(iSEEhex)
+initialPanels <- list(
+    ReducedDimensionPlot(
+        ColorBy = "Feature name", ColorByFeatureName = "Cux2", PanelWidth = 6L),
+    ReducedDimensionHexPlot(
+        ColorBy = "Feature name", ColorByFeatureName = "Cux2", PanelWidth = 6L,
+        BinResolution = 30)
+)
+app <- iSEE(se = sce, initial = initialPanels)
 ```
-
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date.
-
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
-```
-
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub!
 
 ## Citation
 
-Below is the citation output from using `citation('MyBioconductorPackage')` in R. Please
-run this yourself to check for any updates on how to cite __MyBioconductorPackage__.
+Below is the citation output from using `citation('iSEEhex')` in R. Please
+run this yourself to check for any updates on how to cite __iSEEhex__.
 
-```{r 'citation', eval = requireNamespace('MyBioconductorPackage')}
-print(citation('MyBioconductorPackage'), bibtex = TRUE)
+```{r 'citation', eval = requireNamespace('iSEEhex')}
+print(citation('iSEEhex'), bibtex = TRUE)
 ```
 
-Please note that the `MyBioconductorPackage` was only made possible thanks to many other R and bioinformatics software authors, which are cited either in the vignettes and/or the paper(s) describing this package.
+Please note that the `iSEEhex` was only made possible thanks to many other R and bioinformatics software authors, which are cited either in the vignettes and/or the paper(s) describing this package.
 
 ## Code of Conduct
 
-Please note that the `MyBioconductorPackage` project is released with a [Contributor Code of Conduct](http://bioconductor.org/about/code-of-conduct/). By contributing to this project, you agree to abide by its terms.
+Please note that the `iSEEhex` project is released with a [Contributor Code of Conduct](http://bioconductor.org/about/code-of-conduct/). By contributing to this project, you agree to abide by its terms.
 
 ## Development tools
 
 * Continuous code testing is possible thanks to [GitHub actions](https://www.tidyverse.org/blog/2020/04/usethis-1-6-0/)  through `r BiocStyle::CRANpkg('usethis')`, `r BiocStyle::CRANpkg('remotes')`, and `r BiocStyle::CRANpkg('rcmdcheck')` customized to use [Bioconductor's docker containers](https://www.bioconductor.org/help/docker/) and `r BiocStyle::Biocpkg('BiocCheck')`.
 * Code coverage assessment is possible thanks to [codecov](https://codecov.io/gh) and `r BiocStyle::CRANpkg('covr')`.
-* The [documentation website](http://kevinrue.github.io/MyBioconductorPackage) is automatically updated thanks to `r BiocStyle::CRANpkg('pkgdown')`.
+* The [documentation website](http://iSEE.github.io/iSEEhex) is automatically updated thanks to `r BiocStyle::CRANpkg('pkgdown')`.
 * The code is styled automatically thanks to `r BiocStyle::CRANpkg('styler')`.
 * The documentation is formatted thanks to `r BiocStyle::CRANpkg('devtools')` and `r BiocStyle::CRANpkg('roxygen2')`.
 
@@ -97,4 +111,4 @@ This package was developed using `r BiocStyle::Biocpkg('biocthis')`.
 
 ## Code of Conduct
 
-Please note that the MyBioconductorPackage project is released with a [Contributor Code of Conduct](http://bioconductor.org/about/code-of-conduct/). By contributing to this project, you agree to abide by its terms.
+Please note that the iSEEhex project is released with a [Contributor Code of Conduct](http://bioconductor.org/about/code-of-conduct/). By contributing to this project, you agree to abide by its terms.
