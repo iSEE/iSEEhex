@@ -91,6 +91,10 @@ initialPanels <- list(
 app <- iSEE(se = sce, initial = initialPanels)
 ```
 
+```{r, echo=FALSE}
+SCREENSHOT("screenshots/reduced-dimension-hex-plot.png")
+```
+
 ## Further reading
 
 #### Where can I find a comprehensive introduction to `r Biocpkg("iSEE")`? {-}
