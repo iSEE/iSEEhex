@@ -1,3 +1,10 @@
+# MyBioconductorPackage 0.99.2
+
+MISCELLANEOUS
+
+* Fix BiocCheck WARNING: "Description field in the DESCRIPTION file is too
+  concise".
+
 # MyBioconductorPackage 0.99.1
 
 MISCELLANEOUS

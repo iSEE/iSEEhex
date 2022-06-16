@@ -1,7 +1,7 @@
 Package: iSEEhex
 Title: iSEE extension for summarising data points in hexagonal bins
-Version: 0.99.1
-Date: 2022-05-10
+Version: 0.99.2
+Date: 2022-06-16
 Authors@R: 
     c(
     person("Kevin", 
@@ -25,7 +25,8 @@ Authors@R:
            email="infinite.monkeys.with.keyboards@gmail.com", 
            comment=c(ORCID = '0000-0002-3564-4813')))
 Description: This package provides panels summarising data points in hexagonal
-    bins for `iSEE`.
+    bins for `iSEE`. It is part of `iSEEu`, the iSEE universe of panels that
+    extend the `iSEE` package.
 License: Artistic-2.0
 URL: https://github.com/iSEE/iSEEhex
 BugReports: https://support.bioconductor.org/t/iSEEhex
