@@ -4,6 +4,7 @@
 \name{iSEEhex-pkg}
 \alias{iSEEhex}
 \alias{iSEEhex-package}
+\alias{iSEEhex-pkg}
 \title{iSEEhex: iSEE extension for summarising data points in hexagonal bins}
 \description{
 \code{iSEEhex} is a package that provides panels summarising data points in hexagonal bins for \code{iSEE}.
