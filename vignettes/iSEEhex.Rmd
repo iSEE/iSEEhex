@@ -22,7 +22,7 @@ date: "`r BiocStyle::doc_date()`"
 package: iSEEhex
 output: BiocStyle::html_document
 vignette: >
-  %\VignetteIndexEntry{Panel universe}
+  %\VignetteIndexEntry{The iSEEhex package}
   %\VignetteEncoding{UTF-8}  
   %\VignettePackage{iSEEhex}
   %\VignetteKeywords{GeneExpression, RNASeq, Sequencing, Visualization, QualityControl, GUI}
