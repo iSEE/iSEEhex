@@ -1,18 +1,22 @@
-# MyBioconductorPackage 0.99.2
+# iSEEhex 1.7.1
+
+* Version bump to rebuild classes derived from `DotPlot`.
+
+# iSEEhex 0.99.2
 
 MISCELLANEOUS
 
 * Fix BiocCheck WARNING: "Description field in the DESCRIPTION file is too
   concise".
 
-# MyBioconductorPackage 0.99.1
+# iSEEhex 0.99.1
 
 MISCELLANEOUS
 
 * Tag `iseehex` added to watched tags on the support site.
 * Version bump to trigger a build on the automated single package builder.
 
-# MyBioconductorPackage 0.99.0
+# iSEEhex 0.99.0
 
 NEW FEATURES
 

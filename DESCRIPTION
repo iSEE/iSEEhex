@@ -1,7 +1,7 @@
 Package: iSEEhex
 Title: iSEE extension for summarising data points in hexagonal bins
-Version: 1.7.0
-Date: 2022-06-16
+Version: 1.7.1
+Date: 2024-20-01
 Authors@R: 
     c(
     person("Kevin", 
