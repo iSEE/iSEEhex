@@ -1,9 +1,10 @@
+^\.github$
+^\.Rproj\.user$
+^_pkgdown\.yml$
+^iSEEhex\.Rproj$
+^pkgdown$
+^README\.Rmd$
 ^renv$
 ^renv\.lock$
-^MyBioconductorPackage\.Rproj$
-^\.Rproj\.user$
 ^dev$
-^README\.Rmd$
-^\.github$
 ^codecov\.yml$
-^iSEEhex\.Rproj$
