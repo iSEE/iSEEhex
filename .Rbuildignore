@@ -1,6 +1,10 @@
 ^\.github$
+^\.gitignore$
 ^\.Rproj\.user$
 ^_pkgdown\.yml$
+^codecov\.yml$
+^Dockerfile$
+^docs$
 ^iSEEhex\.Rproj$
 ^pkgdown$
 ^README\.Rmd$
